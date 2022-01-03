@@ -1,0 +1,16 @@
+.App {
+  text-align: center;
+  margin-top: 250px;
+  width:100%;
+  height:auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.Buttons_Container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  
+}
