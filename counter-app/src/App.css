@@ -1,10 +1,10 @@
 .App {
   text-align: center;
   margin-top: 250px;
-  width:100%;
-  height:auto;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .Buttons_Container{
@@ -13,4 +13,13 @@
   justify-content: center;
   align-items: center;
   
+}
+
+p{
+  background-color:#FAEDF0;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 15px;   
+  padding: 20px;
+  width: 250px;
 }

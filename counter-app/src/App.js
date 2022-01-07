@@ -16,7 +16,7 @@ function App() {
   
   return (
     <div className="App">
-      <p>Counter: {counter}</p>
+      <h1>Counter: {counter}</h1>
       <div className='Buttons_Container'>
       <Button text={"Increase"} onClick={onClickforIncrease}/>
       <Button text={"Decrease"} onClick={onClickforDecrease}/>
