@@ -1,7 +1,10 @@
+import Header from "./components/header/Header";
 
 function App() {
   return (
-    <div className="bg-slate-600">test</div>
+    <div>
+      <Header />
+    </div>
   );
 }
 
