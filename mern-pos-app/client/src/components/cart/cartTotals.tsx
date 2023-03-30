@@ -2,7 +2,7 @@ import { Button } from 'antd'
 import { ClearOutlined, PlusCircleOutlined, MinusCircleOutlined } from '@ant-design/icons';
 import React from 'react'
 
-const cartTotals = () => {
+const CartTotals = () => {
     return (
         <div className='cart h-full flex flex-col max-h-[calc(100vh_-_90px)]'>
             <h2 className="bg-blue-600 text-center py-4 text-white font-bold tracking-wide">
@@ -246,4 +246,4 @@ const cartTotals = () => {
     )
 }
 
-export default cartTotals
+export default CartTotals

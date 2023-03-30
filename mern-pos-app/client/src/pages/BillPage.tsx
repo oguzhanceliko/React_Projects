@@ -1,9 +1,9 @@
 import { Button, Card, Modal, Table } from 'antd'
 import { useState } from 'react';
-import CreateBill from '../components/cart/CreateBill';
+import PrintBill from '../components/bills/PrintBill';
 import Header from '../components/header/Header'
 
-const CartPage = () => {
+const BillPage = () => {
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
     const showModal = () => {
@@ -46,29 +46,19 @@ const CartPage = () => {
     return (
         <>
             <Header />
+            <h1 className='text-4xl font-bold text-center mb-4'>Faturalar</h1>
             <div className='px-6 dark:bg-slate-600'>
                 <Table className='border rounded' dataSource={dataSource} columns={columns} pagination={false} />
                 <div className="cart-total flex justify-end mt-4">
                     <Card className='w-72'>
-                        <div className='flex justify-between'>
-                            <span>Ara Toplam</span>
-                            <span>555.00₺</span>
-                        </div>
-                        <div className="flex justify-between my-2">
-                            <span>KDV Toplam %8</span>
-                            <span className="text-red-600">+43.92₺</span>
-                        </div>
-                        <div className="flex justify-between">
-                            <b>Toplam</b>
-                            <b>592.92₺</b>
-                        </div>
-                        <Button className="mt-4 w-full" onClick={showModal} type="primary" size="large">Sipariş Oluştur</Button>
+
+                        <Button className="mt-4 w-full" onClick={showModal} type="primary" size="large">Yazdır</Button>
                     </Card>
                 </div>
             </div>
-            <CreateBill isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+            <PrintBill isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
         </>
     )
 }
 
-export default CartPage
+export default BillPage

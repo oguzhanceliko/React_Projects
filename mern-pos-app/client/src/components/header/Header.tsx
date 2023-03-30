@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
     SearchOutlined,
     HomeOutlined,
@@ -8,19 +8,20 @@ import {
     BarChartOutlined,
     LogoutOutlined
 } from "@ant-design/icons";
-import { Input, Badge, Switch } from 'antd';
+import { Input, Badge } from 'antd';
 import { Link } from "react-router-dom";
 
 const Header: React.FC = () => {
-    const onChange = (checked: boolean) => {
-        console.log(`switch to ${checked}`);
-        if (checked) {
-            document.documentElement.classList.add('dark')
-        }
-        else {
-            document.documentElement.classList.remove('dark')
-        }
-    };
+    //Tema Değiştirmek için
+    // const onChange = (checked: boolean) => {
+    //     console.log(`switch to ${checked}`);
+    //     if (checked) {
+    //         document.documentElement.classList.add('dark')
+    //     }
+    //     else {
+    //         document.documentElement.classList.remove('dark')
+    //     }
+    // };
     return (
         <div className='border-b mb-6 dark:bg-slate-600'>
             <header className='py-4 px-6 flex justify-between items-center gap-10'>
@@ -28,7 +29,7 @@ const Header: React.FC = () => {
                     <a href="/">
                         <h2 className='text-2xl font-bold md:text-4xl dark:text-white transition-all'>LOGO</h2>
                     </a>
-                    <Switch onChange={onChange} className='bg-slate-300' />
+                    {/* <Switch onChange={onChange} className='bg-slate-300' /> */}
                 </div>
                 <div className="header-search flex-1  flex justify-center">
                     <Input size="large" className='rounded-full' placeholder="large size" prefix={<SearchOutlined />} />
@@ -47,11 +48,11 @@ const Header: React.FC = () => {
                             <span className="md:text-xs text-[10px]">Sepet</span>
                         </Link>
                     </Badge>
-                    <Link to={"/"} className="menu-link flex flex-col dark:text-white  hover:text-[#40a9ff] transition-all">
+                    <Link to={"/bills"} className="menu-link flex flex-col dark:text-white  hover:text-[#40a9ff] transition-all">
                         <CopyOutlined className="md:text-2xl text-xl" />
                         <span className="md:text-xs text-[10px]">Faturalar</span>
                     </Link>
-                    <Link to={"/"} className="menu-link flex flex-col dark:text-white hover:text-[#40a9ff] transition-all">
+                    <Link to={"/customers"} className="menu-link flex flex-col dark:text-white hover:text-[#40a9ff] transition-all">
                         <UserOutlined className="md:text-2xl text-xl" />
                         <span className="md:text-xs text-[10px]">Müşteriler</span>
                     </Link>

@@ -1,4 +1,4 @@
-import CartTotals from "../components/cart/cartTotals"
+import CartTotals from "../components/cart/CartTotals"
 import Categories from "../components/categories/Categories"
 import Header from "../components/header/Header"
 import Products from "../components/products/Products"
