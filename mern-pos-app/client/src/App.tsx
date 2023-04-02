@@ -4,6 +4,8 @@ import CartPage from "./pages/CartPage";
 import HomePage from "./pages/HomePage";
 import CustomerPage from "./pages/CustomerPage";
 import StatisticPage from "./pages/StatisticPage";
+import RegisterPage from "./pages/auth/RegisterPage";
+import LoginPage from "./pages/auth/LoginPage";
 
 
 function App() {
@@ -15,6 +17,8 @@ function App() {
         <Route path="/bills" element={<BillPage />} />
         <Route path="/customers" element={<CustomerPage />} />
         <Route path="/statistic" element={<StatisticPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
     </BrowserRouter>
   );
