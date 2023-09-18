@@ -1,10 +1,12 @@
-type Props = {
+import { FC } from "react";
+
+interface Props {
     title: string,
     amount: string,
     img: string
 }
 
-const StatisticCard = ({ title, amount, img }: Props) => {
+const StatisticCard: FC<Props> = ({ title, amount, img }) => {
     return (
         <div className="card-item bg-gray-800 p-8 rounded-lg">
             <div className="flex gap-x-4">
@@ -14,6 +16,9 @@ const StatisticCard = ({ title, amount, img }: Props) => {
                 <div className="text-white">
                     <p className="mb-2 text-lg font-medium text-gray-400">{title}</p>
                     <p className="text-xl font-semibold text-gray-200">{amount}</p>
+                </div>
+                <div className="text-white">
+                    <p className="mb-2"></p>
                 </div>
             </div>
         </div>
