@@ -1,36 +1,53 @@
+import "./style.css";
+import { PlusOutlined, EditOutlined } from "@ant-design/icons";
+import { FC, useState } from "react";
+import AddModal from "./AddModal";
+import EditModal from "./EditModal";
+import { ICategory } from "../../interfaces/category";
 
-const Categories = () => {
-    return (
-        <ul className="gap-4 flex md:flex-col text-lg">
-            <li className="bg-green-700 px-6 py-10 text-white cursor-pointer hover:bg-pink-700 transition-all text-center min-w-[145px]">
-                <span>Tümü</span>
-            </li>
-            <li className="bg-green-700 px-6 py-10 text-white cursor-pointer hover:bg-pink-700 transition-all text-center min-w-[145px]">
-                <span>Yiyecek</span>
-            </li>
-            <li className="bg-green-700 px-6 py-10 text-white cursor-pointer hover:bg-pink-700 transition-all text-center min-w-[145px]">
-                <span>İçecek</span>
-            </li>
-            <li className="bg-green-700 px-6 py-10 text-white cursor-pointer hover:bg-pink-700 transition-all text-center min-w-[145px]">
-                <span>Meyve</span>
-            </li>
-            <li className="bg-green-700 px-6 py-10 text-white cursor-pointer hover:bg-pink-700 transition-all text-center min-w-[145px]">
-                <span>Sebze</span>
-            </li>
-            <li className="bg-green-700 px-6 py-10 text-white cursor-pointer hover:bg-pink-700 transition-all text-center min-w-[145px]">
-                <span>Kıyafet</span>
-            </li>
-            <li className="bg-green-700 px-6 py-10 text-white cursor-pointer hover:bg-pink-700 transition-all text-center min-w-[145px]">
-                <span>Elektronik</span>
-            </li>
-            <li className="bg-green-700 px-6 py-10 text-white cursor-pointer hover:bg-pink-700 transition-all text-center min-w-[145px]">
-                <span>İçecek</span>
-            </li>
-            <li className="bg-green-700 px-6 py-10 text-white cursor-pointer hover:bg-pink-700 transition-all text-center min-w-[145px]">
-                <span>test</span>
-            </li>
-        </ul>
-    )
-}
+type Props = {
+  categories: ICategory[];
+  setCategories: (newCategory: ICategory[]) => void;
+};
 
-export default Categories
+const Categories: FC<Props> = ({ categories, setCategories }) => {
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+  return (
+    <ul className="gap-4 flex md:flex-col text-lg">
+      {categories.map((item) => (
+        <li className="category-item" key={item._id}>
+          <span>{item.title}</span>
+        </li>
+      ))}
+
+      <li
+        className="category-item !bg-orange-800 hover:opacity-90"
+        onClick={() => setIsEditModalOpen(true)}
+      >
+        <EditOutlined className="md:text-2xl" />
+      </li>
+      <li
+        className="category-item !bg-purple-800 hover:opacity-90"
+        onClick={() => setIsAddModalOpen(true)}
+      >
+        <PlusOutlined className="md:text-2xl" />
+      </li>
+      <AddModal
+        isAddModalOpen={isAddModalOpen}
+        setIsAddModalOpen={setIsAddModalOpen}
+        setCategories={setCategories}
+        categories={categories}
+      />
+      <EditModal
+        categories={categories}
+        isEditModalOpen={isEditModalOpen}
+        setIsEditModalOpen={setIsEditModalOpen}
+        setCategories={setCategories}
+      />
+    </ul>
+  );
+};
+
+export default Categories;

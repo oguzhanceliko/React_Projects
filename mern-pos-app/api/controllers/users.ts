@@ -18,6 +18,9 @@ export const getUsersById = async (
   res: express.Response
 ) => {
   const userId = req.body.userId;
+  // const userId = req.params.userId;
+
+  console.log("userId", userId);
   try {
     const user = await User.findById(userId);
     res.status(200).json(user);
