@@ -30,7 +30,7 @@ const HomePage = () => {
   return (
     <>
       <Header />
-      <div className="home px-6 flex flex-col md:flex-row justify-between gap-10 dark:bg-slate-600 dark:-mt-[24px] md:pb-0 pb-20">
+      <div className="home px-6 flex flex-col md:flex-row justify-between gap-10 dark:bg-slate-600 dark:-mt-[24px] md:pb-0 pb-20 h-screen">
         <div className="categories  overflow-auto max-h-[calc(100vh_-_112px)] md:pb-4">
           <Categories categories={categories} setCategories={setCategories} />
         </div>
