@@ -14,11 +14,13 @@ import {
   increaseProduct,
   reset,
 } from "../../redux/cartSlice";
+import { useNavigate } from "react-router-dom";
 
 const CartTotals = () => {
   const cart = useSelector((state: RootState) => state.cart);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
     <div className="cart h-full flex flex-col max-h-[calc(100vh_-_90px)]">
@@ -98,7 +100,12 @@ const CartTotals = () => {
           </div>
         </div>
         <div className=" px-2 py-4">
-          <Button type="primary" size="large" className="w-full">
+          <Button
+            type="primary"
+            size="large"
+            className="w-full"
+            onClick={() => navigate("/cart")}
+          >
             Sipariş Oluştur
           </Button>
           <Button
