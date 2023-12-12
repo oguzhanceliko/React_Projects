@@ -1,48 +1,47 @@
-import { Pie } from '@ant-design/plots';
-const PieCharts = () => {
-  const data = [
-    {
-      type: '分类一',
-      value: 27,
-    },
-    {
-      type: '分类二',
-      value: 25,
-    },
-    {
-      type: '分类三',
-      value: 18,
-    },
-    {
-      type: '分类四',
-      value: 15,
-    },
-    {
-      type: '分类五',
-      value: 10,
-    },
-    {
-      type: '其他',
-      value: 5,
-    },
-  ];
+import { Pie } from "@ant-design/plots";
+import { FC, useEffect, useState } from "react";
+
+type Props = {
+  data: any;
+};
+const PieCharts: FC<Props> = ({ data }) => {
   const config = {
     appendPadding: 10,
     data,
-    angleField: 'value',
-    colorField: 'type',
-    radius: 0.8,
+    angleField: "subTotal",
+    colorField: "customerName",
+    radius: 1,
+    innerRadius: 0.6,
     label: {
-      type: 'outer',
+      type: "inner",
+      offset: "-50%",
+      content: "{value}",
+      style: {
+        textAlign: "center",
+        fontSize: 14,
+      },
     },
     interactions: [
       {
-        type: 'element-active',
+        type: "element-selected",
+      },
+      {
+        type: "element-active",
       },
     ],
+    statistic: {
+      content: {
+        style: {
+          whiteSpace: "pre-wrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+        },
+        content: "Toplam\nDeğer",
+      },
+    },
   };
+
   return <Pie {...config} />;
+};
 
-}
-
-export default PieCharts
+export default PieCharts;
