@@ -8,8 +8,8 @@ import {
   BarChartOutlined,
   LogoutOutlined,
 } from "@ant-design/icons";
-import { Input, Badge } from "antd";
-import { Link } from "react-router-dom";
+import { Input, Badge, message } from "antd";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 
@@ -25,6 +25,15 @@ const Header: React.FC = () => {
   //     }
   // };
   const cart = useSelector((state: RootState) => state.cart);
+
+  const navigate = useNavigate();
+  const logOut = () => {
+    if (window.confirm("Çıkış yapmak istediğinize emin misiniz?")) {
+      localStorage.removeItem("posUser");
+      navigate("/login");
+      message.success("Çıkış işlemi başarılı.");
+    }
+  };
 
   return (
     <div className="border-b mb-6 dark:bg-slate-600">
@@ -88,7 +97,8 @@ const Header: React.FC = () => {
             <span className="md:text-xs text-[10px]">İstatistikler</span>
           </Link>
           <Link
-            to={"/"}
+            to={"/login"}
+            onClick={logOut}
             className="menu-link flex flex-col dark:text-white hover:text-[#40a9ff] transition-all"
           >
             <LogoutOutlined className="md:text-2xl text-xl" />
