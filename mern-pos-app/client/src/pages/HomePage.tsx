@@ -4,9 +4,13 @@ import Categories from "../components/categories/Categories";
 import Header from "../components/header/Header";
 import Products from "../components/products/Products";
 import { ICategory } from "../interfaces/category";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
 const HomePage = () => {
   const [categories, setCategories] = useState<ICategory[]>([]);
+  // const [products, setProducts] = useState([]);
+  // const [filtered, setFiltered] = useState([]);
 
   useEffect(() => {
     const getCategories = async () => {

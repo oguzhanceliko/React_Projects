@@ -5,31 +5,46 @@ import { PlusOutlined, EditOutlined } from "@ant-design/icons";
 import AddModal from "./AddModal";
 import { ICategory } from "../../interfaces/category";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
+import { setProducts } from "../../redux/productSlice";
 type Props = {
   categories: ICategory[];
 };
 const Products: FC<Props> = ({ categories }) => {
-  const [products, setProducts] = useState<IProduct[]>([]);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getProducts = async () => {
       try {
         const res = await fetch("http://localhost:5000/api/products/get-all");
         const data = await res.json();
-        setProducts(data);
+        dispatch(setProducts(data)); // Redux store'a ürünleri set et
       } catch (error) {
         console.log(error);
       }
     };
 
     getProducts();
-  }, []);
+  }, [dispatch]);
+
+  const filteredProducts = useSelector((state: RootState) => {
+    const filterCategory = state.products.filteredProduct; // Değişiklik: filteredProduct kullanılmalı
+    if (filterCategory === "Tümü" || !filterCategory) {
+      return state.products.products; // Değişiklik: Tümü seçiliyse veya filtre yoksa tüm ürünleri döndür
+    } else {
+      return state.products.products.filter(
+        (product) => product.category === filterCategory
+      );
+    }
+  });
 
   return (
     <div className="product-wrapper grid gap-4 grid-cols-card">
-      {products.map((item) => (
+      {filteredProducts.map((item) => (
         <ProductItem item={item} key={item._id} />
       ))}
       <div
@@ -48,7 +63,7 @@ const Products: FC<Props> = ({ categories }) => {
         categories={categories}
         isAddModalOpen={isAddModalOpen}
         setIsAddModalOpen={setIsAddModalOpen}
-        products={products}
+        products={filteredProducts}
         setProducts={setProducts}
       />
     </div>

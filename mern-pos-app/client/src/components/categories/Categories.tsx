@@ -4,6 +4,8 @@ import { FC, useState } from "react";
 import AddModal from "./AddModal";
 import EditModal from "./EditModal";
 import { ICategory } from "../../interfaces/category";
+import { useDispatch } from "react-redux";
+import { setFilteredProduct } from "../../redux/productSlice";
 
 type Props = {
   categories: ICategory[];
@@ -14,10 +16,19 @@ const Categories: FC<Props> = ({ categories, setCategories }) => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
+  const dispatch = useDispatch();
+
+  const handleCategoryClick = (product: string) => {
+    dispatch(setFilteredProduct(product));
+  };
   return (
     <ul className="gap-4 flex md:flex-col text-lg">
       {categories.map((item) => (
-        <li className="category-item" key={item._id}>
+        <li
+          className="category-item"
+          key={item._id}
+          onClick={() => handleCategoryClick(item.title)}
+        >
           <span>{item.title}</span>
         </li>
       ))}
