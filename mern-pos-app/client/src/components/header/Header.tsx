@@ -9,11 +9,15 @@ import {
   LogoutOutlined,
 } from "@ant-design/icons";
 import { Input, Badge, message } from "antd";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 
-const Header: React.FC = () => {
+type Props = {
+  setSearch?: (val: string) => void;
+};
+
+const Header: React.FC<Props> = ({ setSearch }) => {
   //Tema Değiştirmek için
   // const onChange = (checked: boolean) => {
   //     console.log(`switch to ${checked}`);
@@ -35,6 +39,7 @@ const Header: React.FC = () => {
     }
   };
 
+  const { pathname } = useLocation();
   return (
     <div className="border-b mb-6 dark:bg-slate-600">
       <header className="py-4 px-6 flex justify-between items-center gap-10">
@@ -52,6 +57,14 @@ const Header: React.FC = () => {
             className="rounded-full"
             placeholder="large size"
             prefix={<SearchOutlined />}
+            onClick={() => {
+              pathname !== "/" && navigate("/");
+            }}
+            onChange={(e) => {
+              if (setSearch) {
+                setSearch(e.target.value.toLowerCase());
+              }
+            }}
           />
         </div>
         <div className="menu-links flex items-center justify-between gap-7 md:static fixed z-50 bottom-0 md:w-auto w-screen dark:bg-slate-600 bg-white md:bg-transparent left-0 md:border-t-0 border-t md:px-0 px-4 py-1">

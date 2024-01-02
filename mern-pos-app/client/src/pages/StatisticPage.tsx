@@ -8,6 +8,9 @@ const StatisticPage = () => {
   const [products, setProducts] = useState([]);
   const [data, setData] = useState([]);
 
+  const user = JSON.parse(localStorage.getItem("posUser") as string);
+
+  console.log("user", user);
   useEffect(() => {
     const getProducts = async () => {
       try {
@@ -51,7 +54,10 @@ const StatisticPage = () => {
         <div className="statistic-section">
           <h2 className="text-lg">
             Hoş geldin{" "}
-            <span className="text-green-700 font-bold text-xl">admin</span>.
+            <span className="text-green-700 font-bold text-xl">
+              {user.username}
+            </span>
+            .
           </h2>
           <div className="statistic-cards grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1  my-10 md:gap-10 gap-4">
             <StatisticCard

@@ -1,5 +1,4 @@
 import { FC, useEffect, useState } from "react";
-import { IProduct } from "../../interfaces/product";
 import ProductItem from "./ProductItem";
 import { PlusOutlined, EditOutlined } from "@ant-design/icons";
 import AddModal from "./AddModal";
@@ -10,8 +9,9 @@ import { RootState } from "../../redux/store";
 import { setProducts } from "../../redux/productSlice";
 type Props = {
   categories: ICategory[];
+  search: string;
 };
-const Products: FC<Props> = ({ categories }) => {
+const Products: FC<Props> = ({ categories, search }) => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -44,9 +44,11 @@ const Products: FC<Props> = ({ categories }) => {
 
   return (
     <div className="product-wrapper grid gap-4 grid-cols-card">
-      {filteredProducts.map((item) => (
-        <ProductItem item={item} key={item._id} />
-      ))}
+      {filteredProducts
+        .filter((product) => product.title.toLowerCase().includes(search))
+        .map((item) => (
+          <ProductItem item={item} key={item._id} />
+        ))}
       <div
         className="product-item border hover:shadow-lg cursor-pointer transition-all select-none bg-purple-800 flex justify-center items-center hover:opacity-90 min-h-[180px]"
         onClick={() => setIsAddModalOpen(true)}
@@ -64,7 +66,6 @@ const Products: FC<Props> = ({ categories }) => {
         isAddModalOpen={isAddModalOpen}
         setIsAddModalOpen={setIsAddModalOpen}
         products={filteredProducts}
-        setProducts={setProducts}
       />
     </div>
   );

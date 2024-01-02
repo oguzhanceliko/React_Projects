@@ -4,6 +4,7 @@ import PrintBill from "../components/bills/PrintBill";
 import Header from "../components/header/Header";
 import { ICustomer } from "../interfaces/customer";
 
+import { GetColumnSearchProps } from "../hooks/TableSearch";
 const BillPage = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [billItems, setBillItems] = useState();
@@ -38,11 +39,13 @@ const BillPage = () => {
       title: "Müşteri Adı",
       dataIndex: "customerName",
       key: "customerName",
+      ...GetColumnSearchProps("customerName"),
     },
     {
       title: "Telefon Numarası",
       dataIndex: "customerPhoneNumber",
       key: "customerPhoneNumber",
+      ...GetColumnSearchProps("customerPhoneNumber"),
     },
     {
       title: "Oluşturma Tarihi",
@@ -59,6 +62,7 @@ const BillPage = () => {
       render: (text: any) => {
         return <span>{text}₺</span>;
       },
+      sorter: (a: any, b: any) => a.totalAmount - b.totalAmount,
     },
     {
       title: "Actions",

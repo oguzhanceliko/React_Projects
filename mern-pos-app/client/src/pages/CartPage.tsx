@@ -10,6 +10,7 @@ import {
   deleteCart,
   increaseProduct,
 } from "../redux/cartSlice";
+import { GetColumnSearchProps } from "../hooks/TableSearch";
 
 const CartPage = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -35,6 +36,7 @@ const CartPage = () => {
       title: "Ürün Adı",
       dataIndex: "title",
       key: "title",
+      ...GetColumnSearchProps("title"),
     },
     {
       title: "Kategori",
@@ -48,6 +50,7 @@ const CartPage = () => {
       render: (text: any) => {
         return <span>{text.toFixed(2)}₺</span>;
       },
+      sorter: (a: any, b: any) => a.price - b.price,
     },
     {
       title: "Ürün Adeti",

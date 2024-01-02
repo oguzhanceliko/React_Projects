@@ -1,6 +1,7 @@
 import { Table } from "antd";
 import Header from "../components/header/Header";
 import { useEffect, useState } from "react";
+import { GetColumnSearchProps } from "../hooks/TableSearch";
 
 const CustomerPage = () => {
   const [billItems, setBillItems] = useState([]);
@@ -23,11 +24,13 @@ const CustomerPage = () => {
       title: "Müşteri Adı",
       dataIndex: "customerName",
       key: "customerName",
+      ...GetColumnSearchProps("customerName"),
     },
     {
       title: "Telefon Numarası",
       dataIndex: "customerPhoneNumber",
       key: "customerPhoneNumber",
+      ...GetColumnSearchProps("customerPhoneNumber"),
     },
     {
       title: "İşlem Tarihi",

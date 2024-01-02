@@ -2,11 +2,12 @@ import React, { FC } from "react";
 import { Button, Form, Input, Modal, Select, message } from "antd";
 import { ICategory } from "../../interfaces/category";
 import { IProduct } from "../../interfaces/product";
+import { useDispatch } from "react-redux";
+import { setProducts } from "../../redux/productSlice";
 
 type Props = {
   isAddModalOpen: boolean;
   setIsAddModalOpen: (isModalOpen: boolean) => void;
-  setProducts: (newProduct: IProduct[]) => void;
   products: IProduct[];
   categories: ICategory[];
 };
@@ -14,11 +15,11 @@ type Props = {
 const AddModal: FC<Props> = ({
   isAddModalOpen,
   setIsAddModalOpen,
-  setProducts,
   products,
   categories,
 }) => {
   const [form] = Form.useForm();
+  const dispatch = useDispatch();
 
   const onFinish = (values: IProduct) => {
     try {
@@ -30,17 +31,18 @@ const AddModal: FC<Props> = ({
       message.success("Ürün başarıyla eklendi.");
       form.resetFields();
       form.resetFields();
-
-      setProducts([
-        ...products,
-        {
-          _id: Math.random(),
-          title: values.title,
-          img: values.img,
-          price: values.price,
-          category: values.category,
-        },
-      ]);
+      dispatch(
+        setProducts([
+          ...products,
+          {
+            _id: Math.random(),
+            title: values.title,
+            img: values.img,
+            price: values.price,
+            category: values.category,
+          },
+        ])
+      ); // Redux store'a ürünleri set et
     } catch (error) {
       console.log(error);
     }
