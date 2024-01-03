@@ -1,4 +1,4 @@
-import { Button, Table } from "antd";
+import { Button, Spin, Table } from "antd";
 import { useEffect, useState } from "react";
 import PrintBill from "../components/bills/PrintBill";
 import Header from "../components/header/Header";
@@ -89,18 +89,26 @@ const BillPage = () => {
     <>
       <Header />
       <h1 className="text-4xl font-bold text-center mb-4">Faturalar</h1>
-      <div className="px-6 dark:bg-slate-600 rounded-tr-">
-        <Table
-          className="border rounded"
-          dataSource={billItems}
-          columns={columns}
-          pagination={false}
-          scroll={{
-            x: 1000,
-            y: 300,
-          }}
+
+      {billItems !== undefined ? (
+        <div className="px-6 dark:bg-slate-600 rounded-tr-">
+          <Table
+            className="border rounded"
+            dataSource={billItems}
+            columns={columns}
+            pagination={false}
+            scroll={{
+              x: 1000,
+              y: 300,
+            }}
+          />
+        </div>
+      ) : (
+        <Spin
+          size="large"
+          className="absolute top-1/2 h-screen w-screen flex justify-center"
         />
-      </div>
+      )}
       <PrintBill
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}

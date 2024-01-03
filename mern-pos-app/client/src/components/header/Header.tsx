@@ -70,7 +70,9 @@ const Header: React.FC<Props> = ({ setSearch }) => {
         <div className="menu-links flex items-center justify-between gap-7 md:static fixed z-50 bottom-0 md:w-auto w-screen dark:bg-slate-600 bg-white md:bg-transparent left-0 md:border-t-0 border-t md:px-0 px-4 py-1">
           <Link
             to={"/"}
-            className="menu-link flex flex-col dark:text-white hover:text-[#40a9ff] transition-all "
+            className={`${
+              pathname === "/" && "text-[#40a9ff]"
+            } menu-link flex flex-col dark:text-white hover:text-[#40a9ff] transition-all`}
           >
             <HomeOutlined className="md:text-2xl text-xl" />
             <span className="md:text-xs text-[10px]">Ana Sayfa</span>
@@ -82,7 +84,9 @@ const Header: React.FC<Props> = ({ setSearch }) => {
           >
             <Link
               to={"/cart"}
-              className="menu-link flex flex-col dark:text-white hover:text-[#40a9ff] transition-all"
+              className={`${
+                pathname === "/cart" && "text-[#40a9ff]"
+              } menu-link flex flex-col dark:text-white hover:text-[#40a9ff] transition-all`}
             >
               <ShoppingCartOutlined className="md:text-2xl text-xl" />
               <span className="md:text-xs text-[10px]">Sepet</span>
@@ -90,21 +94,27 @@ const Header: React.FC<Props> = ({ setSearch }) => {
           </Badge>
           <Link
             to={"/bills"}
-            className="menu-link flex flex-col dark:text-white  hover:text-[#40a9ff] transition-all"
+            className={`${
+              pathname === "/bills" && "text-[#40a9ff]"
+            } menu-link flex flex-col dark:text-white hover:text-[#40a9ff] transition-all`}
           >
             <CopyOutlined className="md:text-2xl text-xl" />
             <span className="md:text-xs text-[10px]">Faturalar</span>
           </Link>
           <Link
             to={"/customers"}
-            className="menu-link flex flex-col dark:text-white hover:text-[#40a9ff] transition-all"
+            className={`${
+              pathname === "/customers" && "text-[#40a9ff]"
+            } menu-link flex flex-col dark:text-white hover:text-[#40a9ff] transition-all`}
           >
             <UserOutlined className="md:text-2xl text-xl" />
             <span className="md:text-xs text-[10px]">Müşteriler</span>
           </Link>
           <Link
             to={"/statistic"}
-            className="menu-link flex flex-col dark:text-white hover:text-[#40a9ff] transition-all"
+            className={`${
+              pathname === "/statistic" && "text-[#40a9ff]"
+            } menu-link flex flex-col dark:text-white hover:text-[#40a9ff] transition-all`}
           >
             <BarChartOutlined className="md:text-2xl text-xl" />
             <span className="md:text-xs text-[10px]">İstatistikler</span>

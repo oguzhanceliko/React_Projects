@@ -9,8 +9,12 @@ interface CartState {
 
 const initialState: CartState = {
   //Değer tutacağımız stateleri burada tanımlıyoruz.
-  cartItems: [],
-  total: 0,
+  cartItems: localStorage.getItem("cart")
+    ? JSON.parse(localStorage.getItem("cart") as string).cartItems
+    : [],
+  total: localStorage.getItem("cart")
+    ? JSON.parse(localStorage.getItem("cart") as string).total
+    : 0,
   tax: 8,
 };
 
