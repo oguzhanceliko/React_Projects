@@ -20,7 +20,9 @@ const Products: FC<Props> = ({ categories, search }) => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/products/get-all");
+        const res = await fetch(
+          process.env.REACT_APP_BASE_URL + "/api/products/get-all"
+        );
         const data = await res.json();
         dispatch(setProducts(data)); // Redux store'a ürünleri set et
       } catch (error) {

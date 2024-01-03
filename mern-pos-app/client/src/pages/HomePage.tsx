@@ -13,7 +13,9 @@ const HomePage = () => {
   useEffect(() => {
     const getCategories = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/categories/get-all");
+        const res = await fetch(
+          process.env.REACT_APP_BASE_URL + "/api/categories/get-all"
+        );
         const data = await res.json();
         data &&
           setCategories(

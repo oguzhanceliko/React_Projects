@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 //Routes
 import categoryRoute from "../routes/categories";
